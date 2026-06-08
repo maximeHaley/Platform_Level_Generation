@@ -1,20 +1,15 @@
 <set>
   <tiles>
 <tile name="Assets/Prefabs/BackgroundPrefab" symmetry="X" weight="1.0"/>
-<tile name="Assets/Prefabs/WallPrefab" symmetry="X" weight="1.0"/>
-<tile name="Assets/Prefabs/CeilingPrefab" symmetry="X" weight="1.0"/>
 <tile name="Assets/Prefabs/GroundPrefab" symmetry="X" weight="1.0"/>
 	</tiles>
 <neighbors>  <neighbor left="Assets/Prefabs/GroundPrefab 0" right="Assets/Prefabs/GroundPrefab 0"/>
-  <neighbor left="Assets/Prefabs/GroundPrefab 1" right="Assets/Prefabs/WallPrefab 1"/>
   <neighbor left="Assets/Prefabs/GroundPrefab 1" right="Assets/Prefabs/BackgroundPrefab 1"/>
-  <neighbor left="Assets/Prefabs/WallPrefab 0" right="Assets/Prefabs/BackgroundPrefab 0"/>
-  <neighbor left="Assets/Prefabs/WallPrefab 1" right="Assets/Prefabs/WallPrefab 1"/>
+  <neighbor left="Assets/Prefabs/GroundPrefab 1" right="Assets/Prefabs/GroundPrefab 1"/>
   <neighbor left="Assets/Prefabs/BackgroundPrefab 0" right="Assets/Prefabs/BackgroundPrefab 0"/>
   <neighbor left="Assets/Prefabs/BackgroundPrefab 1" right="Assets/Prefabs/BackgroundPrefab 1"/>
-  <neighbor left="Assets/Prefabs/BackgroundPrefab 0" right="Assets/Prefabs/WallPrefab 0"/>
-  <neighbor left="Assets/Prefabs/WallPrefab 1" right="Assets/Prefabs/CeilingPrefab 1"/>
-  <neighbor left="Assets/Prefabs/BackgroundPrefab 1" right="Assets/Prefabs/CeilingPrefab 1"/>
-  <neighbor left="Assets/Prefabs/CeilingPrefab 0" right="Assets/Prefabs/CeilingPrefab 0"/>
+  <neighbor left="Assets/Prefabs/BackgroundPrefab 1" right="Assets/Prefabs/GroundPrefab 1"/>
+  <neighbor left="Assets/Prefabs/BackgroundPrefab 0" right="Assets/Prefabs/GroundPrefab 0"/>
+  <neighbor left="Assets/Prefabs/GroundPrefab 0" right="Assets/Prefabs/BackgroundPrefab 0"/>
 	</neighbors>
 </set>

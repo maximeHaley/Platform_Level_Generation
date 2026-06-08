@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 public class Training : MonoBehaviour{
 	public int gridsize = 1;
-	public int width = 12;
-	public int depth = 12;
+	public int width = 40;
+	public int depth = 18;
 	public UnityEngine.Object[] tiles = new UnityEngine.Object[0];
 	public int[] RS = new int[0];
 	public Dictionary<string, byte> str_tile;

@@ -9,12 +9,12 @@ using UnityEditor;
 class OverlapWFC : MonoBehaviour{
 	public Training training = null;
 	public int gridsize = 1;
-	public int width = 20;
-	public int depth = 20;
+	public int width = 40;
+	public int depth = 18;
 	public int seed = 0;
 	//[HideInInspector]
-	public int N = 2;
-	public bool periodicInput = false;
+	public int N = 3 ;
+	public bool periodicInput = true;
 	public bool periodicOutput = false;
 	public int symmetry = 1;
 	public int foundation = 0;
@@ -69,7 +69,15 @@ class OverlapWFC : MonoBehaviour{
 		}
 	}
 
+	public void ClearReplaceable() {
+    GameObject[] toDelete = GameObject.FindGameObjectsWithTag("WFCReplaceable");
+    foreach (GameObject go in toDelete) {
+        if (Application.isPlaying) Destroy(go);
+        else DestroyImmediate(go);
+    }
+}
 	public void Generate() {
+		ClearReplaceable();
 		if (training == null){Debug.Log("Can't Generate: no designated Training component");}
 		if (IsPrefabRef(training.gameObject)){
 			GameObject o = CreatePrefab(training.gameObject, new Vector3(0,99999f,0f), Quaternion.identity);
