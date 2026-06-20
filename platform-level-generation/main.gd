@@ -7,7 +7,7 @@ const FILL_RATE = 0.07
 const JUMP_MAX_DIST = 4    # portée horizontale max d'un saut
 const JUMP_MAX_HEIGHT = 3  # différence de hauteur max franchissable 
 
-@onready var tilemap : TileMapLayer = $TileMapLayer
+@onready var tilemap : TileMapLayer = $TileMapLayerConstructive
 
 # Map courante
 var current_map : Array = []
