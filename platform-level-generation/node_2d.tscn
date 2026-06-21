@@ -33,5 +33,6 @@ tile_map_data = PackedByteArray("AAAAAPz/AAABAAEAAAABAPz/AAABAAEAAAACAPz/AAABAAE
 tile_set = ExtResource("2_epypp")
 
 [node name="TileMapLayerClasses" type="TileMapLayer" parent="." unique_id=1141029933]
+visible = false
 tile_map_data = PackedByteArray("AAAAAP//AAABAAEAAAAAAAAAAAAHAAAAAAABAAAAAAAHAAEAAAA=")
 tile_set = ExtResource("2_epypp")
