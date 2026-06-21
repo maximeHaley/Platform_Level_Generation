@@ -24,9 +24,7 @@ func _ready() -> void:
 	print("  - Densité     : %.3f" % fitness_density(current_map))
 	print("  - Chemin      : %.3f" % fitness_path(current_map))
 
-# ==========================================================
-# Génération aléatoire 
-# ==========================================================
+
 func generate_ruled_map() -> Array:
 	var map = []
 	for x in MAP_WIDTH:
@@ -38,7 +36,7 @@ func generate_ruled_map() -> Array:
 			# Pas de plafond
 			elif y < MAP_HEIGHT - 17:
 				column.append(0)
-			# pas de cube isolé (min 2tuiles de largeur)
+			# Pas de cube isolé (min 2tuiles de largeur)
 			elif x > 1 and map[x-2][y]==0 and map[x-1][y]==1:
 				column.append(1)
 			# Pas de mur de plus de 3 tuiles
@@ -53,7 +51,7 @@ func generate_ruled_map() -> Array:
 	enforce_vertical_clearance(map)
 	return map
 
-#pour être sûr que l'écart en hauteur est bien de 2 pour 2 blocs non reliés
+#Pour être sûr que l'écart en hauteur est bien de 2 pour 2 blocs non reliés
 func enforce_vertical_clearance(map: Array) -> void:
 	for x in MAP_WIDTH:
 		for y in range(2, MAP_HEIGHT - 1):
@@ -75,9 +73,6 @@ func draw_map(map: Array) -> void:
 			else:
 				tilemap.set_cell(Vector2i(x, y), 0, Vector2i(1, 1))
 
-# =============================================================
-# Attribution d'un score
-# =============================================================
 
 # Fonction fitness, qui donne un score global
 func fitness(map: Array) -> float:
@@ -111,7 +106,7 @@ func fitness_platforms(map: Array) -> float:
 		return 0.0
 	return float(playable_platforms)/float(total_platforms)
 
-# Critère de densité , doit correspondre au taux de remplissage
+# Critère de densité, doit correspondre au taux de remplissage
 func fitness_density(map: Array) -> float:
 	var total_cells = MAP_HEIGHT*MAP_WIDTH
 	var bloc_cells = 0
@@ -139,10 +134,10 @@ func fitness_path(map: Array) -> float:
 	if start == Vector2i(-1, -1) or goal == Vector2i(-1, -1):
 		return 0.0
  
-	# repérer tous les sommets de plateforme
+	# Repérer tous les sommets de plateforme
 	var platform_tops = _find_all_platform_tops(map)
  
-	#pour faire la différence entre le sol et une plateforme
+	# Pour faire la différence entre le sol et une plateforme
 	var elevated_tops = []
 	for p in platform_tops:
 		if p.y < MAP_HEIGHT - 2:
@@ -153,7 +148,7 @@ func fitness_path(map: Array) -> float:
 	if not platform_tops.has(goal):
 		platform_tops.append(goal)
  
-	#parcours en largeur
+	#Parcours en largeur
 	var visited = {}
 	var queue = [start]
 	visited[start] = true
@@ -168,7 +163,7 @@ func fitness_path(map: Array) -> float:
 				visited[other] = true
 				queue.append(other)
  
-	#cas où on n'a aucune plateforme donc un sol plat
+	#Cas où on n'a aucune plateforme donc un sol plat
 	if elevated_tops.size() == 0:
 		return 1.0 if visited.has(goal) else 0.0
  
@@ -180,7 +175,7 @@ func fitness_path(map: Array) -> float:
 	return float(reached_elevated) / float(elevated_tops.size())
  
  
-# regarde pour toutes les colonnes les endroit ou le perso peut se poser sur un bloc
+# Regarde pour toutes les colonnes les endroit ou le perso peut se poser sur un bloc
 func _find_all_platform_tops(map: Array) -> Array:
 	var tops = []
 	for x in MAP_WIDTH:
@@ -190,7 +185,7 @@ func _find_all_platform_tops(map: Array) -> Array:
 	return tops
  
  
-#teste si le saut est possible en longueur/hauteur
+#Teste si le saut est possible en longueur/hauteur
 func _is_jump_possible(map: Array, from: Vector2i, to: Vector2i) -> bool:
 	var dx = abs(to.x - from.x)
 	var dy = from.y - to.y
@@ -202,7 +197,7 @@ func _is_jump_possible(map: Array, from: Vector2i, to: Vector2i) -> bool:
 	if dy > JUMP_MAX_HEIGHT or dy < -JUMP_MAX_HEIGHT:
 		return false
  
-	# vérifie qu'il n'y a pas de bloc qui bloque la trajectoire du saut
+	# Vérifie qu'il n'y a pas de bloc qui bloque la trajectoire du saut
 	var step_x = 1 if to.x > from.x else -1
 	var steps = dx
 	for i in range(1, steps + 1):
